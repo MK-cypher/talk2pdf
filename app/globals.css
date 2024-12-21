@@ -1,0 +1,346 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 0 0% 98%;
+    --success: 156, 72%, 67%;
+    --alt-success: 161, 94%, 30%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --scroll-track: 0 0% 24%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 240 5.9% 10%;
+    --success: 156, 72%, 67%;
+    --alt-success: 161, 94%, 30%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --scroll-track: 0 0% 38%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--scroll-track));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 80%);
+}
+
+input[type="color"] {
+  border-radius: var(--radius);
+  background-color: transparent;
+  border: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container.container {
+    max-width: 1100px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+
+button:disabled {
+  opacity: 50%;
+}
+
+button.loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent;
+}
+button.loading > *:not(span) {
+  opacity: 0;
+}
+button.loading span {
+  display: inline;
+  border-radius: 50%;
+  border: 5px solid;
+  border-color: transparent white white white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  animation: rotate 1s infinite linear;
+}
+@keyframes rotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+textarea,
+input:not([type="color"]):not([type="file"]) {
+  background-color: hsl(var(--foreground) / 5%);
+  border: 1px solid hsl(var(--border));
+  padding: 5px 10px;
+  outline: 1px solid transparent;
+  transition: 0.3s;
+  border-radius: calc(var(--radius) - 4px);
+  width: 100%;
+}
+
+textarea::placeholder,
+textarea ~ svg,
+input::placeholder,
+input ~ svg {
+  transition: 0.3s;
+}
+
+textarea:focus-visible,
+input:focus-visible {
+  outline: 1px solid hsl(var(--primary) / 80%);
+}
+
+textarea:focus-visible::placeholder,
+input:focus-visible::placeholder {
+  opacity: 0.5;
+}
+textarea:focus-visible ~ svg,
+input:focus-visible ~ svg {
+  opacity: 0.5;
+}
+
+label {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+*:has(textarea:focus) > label,
+*:has(input:focus-visible) > label {
+  color: hsl(var(--primary));
+}
+
+.link-underline {
+  position: relative;
+  transition: 0.3s;
+  opacity: 0.8;
+}
+.link-underline::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: hsl(var(--primary));
+  transition: 0.3s;
+}
+
+.link-underline:hover {
+  opacity: 1;
+}
+
+.link-underline:hover::before {
+  width: 100%;
+}
+
+/* chat window */
+
+.user-bubble,
+.assistant-bubble {
+  width: fit-content;
+  max-width: 85%;
+  padding: 8px;
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 5;
+  background: var(--chat-bubbles-bg);
+}
+.chat-bubble-message {
+  word-break: break-word;
+  overflow-x: visible;
+  width: 100%;
+}
+
+.user-bubble::before,
+.assistant-bubble::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 10px;
+  bottom: 0;
+  z-index: -1;
+  background: var(--chat-bubbles-bg);
+}
+
+.user-bubble::after,
+.assistant-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: 4.5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: hsl(var(--secondary));
+  box-shadow: 0 0 0 4px hsl(var(--secondary));
+}
+
+.assistant-bubble {
+  background-color: var(--chat-bubbles-bg);
+  border-bottom-left-radius: 0;
+}
+.assistant-bubble::before {
+  left: -8px;
+}
+.assistant-bubble::after {
+  left: -12px;
+}
+
+.user-bubble {
+  border-bottom-right-radius: 0;
+  align-self: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.user-bubble::before {
+  right: -8px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.user-bubble::after {
+  right: -12px;
+}
+
+.assistant-typing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-inline: 10px;
+}
+.assistant-typing div {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsl(var(--foreground));
+  animation: typing 1s infinite linear;
+}
+.assistant-typing div:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.assistant-typing div:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.assistant-typing div:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+@keyframes typing {
+  30% {
+    transform: translateY(-3px);
+    opacity: 0.3;
+  }
+  60% {
+    transform: translateY(3px);
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
