@@ -12,17 +12,26 @@ export default function RsizableChat({
   id,
   activeDoc,
   setActiveDoc,
+  title,
 }: {
   activeDoc: string;
   setActiveDoc: any;
   docs: PDFDocumentType[];
   allDocs: PDFDocumentType[];
   id: string;
+  title: string;
 }) {
   return (
     <PanelGroup direction="horizontal">
       <Panel defaultSize={10} minSize={10} maxSize={20} className="">
-        <DocPreview allDocs={allDocs} docs={docs} activeDoc={activeDoc} setActiveDoc={setActiveDoc} id={id} />
+        <DocPreview
+          title={title}
+          allDocs={allDocs}
+          docs={docs}
+          activeDoc={activeDoc}
+          setActiveDoc={setActiveDoc}
+          id={id}
+        />
       </Panel>
       <PanelResizeHandle className="w-1 bg-muted ">
         <Separator orientation="vertical" className="h-full mx-auto w-[1px]" />
@@ -37,6 +46,7 @@ export default function RsizableChat({
       </PanelResizeHandle>
 
       <Panel defaultSize={30} minSize={30} maxSize={50}>
+        <div className="mb-2 text-xl font-bold p-2">{title}</div>
         <ChatWrapper chatId={id} />
       </Panel>
     </PanelGroup>

@@ -20,7 +20,7 @@ export default function Hero() {
         </div>
         <div className="w-full aspect-video bg-secondary/50 shadow-inner rounded-xl p-3 mt-20 relative">
           <div className="bg-primary w-full h-full blur-2xl absolute top-0 left-0 z-[-1]"></div>
-          <div className="w-full h-full bg-background rounded-xl"></div>
+          <img src="/hero.png" alt="Hero" className="w-full h-full bg-background rounded-xl object-cover" />
         </div>
       </div>
     </div>

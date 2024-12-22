@@ -14,6 +14,7 @@ export default function DocPreview({
   activeDoc,
   allDocs,
   mobile,
+  title,
 }: {
   id: string;
   docs: PDFDocumentType[];
@@ -21,6 +22,7 @@ export default function DocPreview({
   setActiveDoc: any;
   allDocs: PDFDocumentType[];
   mobile?: boolean;
+  title: string;
 }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function DocPreview({
         <DialogTrigger className="border hover:bg-secondary/80 transition-all duration-300 w-full p-2 px-3 rounded-lg flex justify-center items-center">
           <Plus />
         </DialogTrigger>
-        <ChatsDialog allDocs={allDocs} data={docs} id={id} />
+        <ChatsDialog title={title} allDocs={allDocs} data={docs} id={id} />
       </Dialog>
       {docs && docs.length ? (
         docs.map((item) => (

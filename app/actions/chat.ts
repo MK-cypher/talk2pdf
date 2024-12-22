@@ -53,11 +53,11 @@ export const getChats = async () => {
 export const getChatDocs = async (id: string) => {
   const supabase = await createSupabaseServerClient();
 
-  const {data: ids, error} = await supabase.from("chats").select("documents").eq("id", id);
-  if (!error && ids.length) {
-    const {data: docs, error: err2} = await supabase.from("documents").select("*").in("url", ids[0]?.documents);
+  const {data: chat, error} = await supabase.from("chats").select("name,documents").eq("id", id);
+  if (!error && chat.length) {
+    const {data: docs, error: err2} = await supabase.from("documents").select("*").in("url", chat[0]?.documents);
     if (!err2) {
-      return {docs, ids: ids[0].documents};
+      return {docs, ids: chat[0].documents, title: chat[0].name};
     }
     console.log("error 2", err2);
   }

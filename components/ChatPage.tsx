@@ -12,12 +12,14 @@ export default function ChatPage({
   id,
   ids,
   messages,
+  title,
 }: {
   allDocuments: PDFDocumentType[];
   chatDocs: PDFDocumentType[];
   id: string;
   ids: string[];
   messages: ChatMessageType[];
+  title: string;
 }) {
   const {updateDocs, initMsgs} = useChatBot();
   const [activeDoc, setActiveDoc] = useState(chatDocs[0].url);
@@ -38,7 +40,7 @@ export default function ChatPage({
   }, []);
 
   return (
-    <div className="h-[calc(100vh-6rem)]">
+    <div className="h-[calc(100vh-6.1rem)]">
       {mobile ? (
         <MobileChat
           chatId={id}
@@ -46,9 +48,11 @@ export default function ChatPage({
           setActiveDoc={setActiveDoc}
           allDocs={allDocuments}
           docs={chatDocs}
+          title={title}
         />
       ) : (
         <ResizableChat
+          title={title}
           activeDoc={activeDoc}
           setActiveDoc={setActiveDoc}
           allDocs={allDocuments}

@@ -9,6 +9,7 @@ import {Alert, AlertDescription} from "@/components/ui/alert";
 import {saveDocument} from "@/app/actions/documents";
 import {useToast} from "@/hooks/use-toast";
 import {useUser} from "./UserContext";
+import {formatFileSize} from "@/lib/utils";
 
 export default function AddDocument() {
   const {toast} = useToast();
@@ -128,7 +129,7 @@ export default function AddDocument() {
                 <div className="space-y-1">
                   <Progress value={uploadProgress} className="h-2" />
                   <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>{Number(file.size / 1024).toFixed(0)} KB</span>
+                    <span>{formatFileSize(file.size)}</span>
                     <span>{uploadProgress}%</span>
                   </div>
                 </div>

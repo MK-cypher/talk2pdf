@@ -11,12 +11,14 @@ export default function MobileChat({
   chatId,
   activeDoc,
   setActiveDoc,
+  title,
 }: {
   activeDoc: string;
   setActiveDoc: any;
   docs: PDFDocumentType[];
   allDocs: PDFDocumentType[];
   chatId: string;
+  title: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -44,6 +46,7 @@ export default function MobileChat({
         </button>
         <div className="h-[calc(100vh-6rem)] overflow-y-auto px-2">
           <DocPreview
+            title={title}
             mobile
             allDocs={allDocs}
             docs={docs}
@@ -53,6 +56,7 @@ export default function MobileChat({
           />
         </div>
       </div>
+      <div className="mb-2 text-xl font-bold p-2">{title}</div>
       <ChatWrapper chatId={chatId} />
     </div>
   );

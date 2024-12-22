@@ -9,10 +9,10 @@ export default async function page({params}: {params: {id: string}}) {
   const allDocuments = await getDocuments();
   const messages = JSON.parse(await getMsgs(id));
   // @ts-ignore
-  const {docs, ids} = await getChatDocs(id);
+  const {docs, ids, title} = await getChatDocs(id);
   return (
     <div>
-      <ChatPage allDocuments={allDocuments} chatDocs={docs} id={id} ids={ids} messages={messages} />
+      <ChatPage allDocuments={allDocuments} title={title} chatDocs={docs} id={id} ids={ids} messages={messages} />
     </div>
   );
 }
