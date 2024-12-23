@@ -55,18 +55,18 @@ export const updateSession = async (request: NextRequest) => {
       }
     );
 
-    // const {
-    //   data: {user},
-    // } = await supabase.auth.getUser();
+    const {
+      data: {user},
+    } = await supabase.auth.getUser();
 
-    // const loggedUrls = ["/signin", "/signup", "/forgot-password", "/update-password"];
+    const loggedUrls = ["/signin", "/signup", "/forgot-password", "/update-password"];
 
-    // if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
-    //   return NextResponse.redirect(new URL("/signin", request.url));
-    // }
-    // if (user && loggedUrls.includes(request.nextUrl.pathname)) {
-    //   return NextResponse.redirect(new URL("/dashboard", request.url));
-    // }
+    if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
+      return NextResponse.redirect(new URL("/signin", request.url));
+    }
+    if (user && loggedUrls.includes(request.nextUrl.pathname)) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
 
     return response;
   } catch (e) {
